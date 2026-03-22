@@ -1,0 +1,41 @@
+package practice.selenium;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+//import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class Dropdown {
+WebDriver driver;
+	
+	@Test
+	public void browserSetUp() throws InterruptedException {
+		WebDriverManager.chromedriver().setup();
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+		driver.get("https://www.automationtesting.co.uk/dropdown.html");
+		Thread.sleep(3000);
+		WebElement dropdown = driver.findElement(By.id("cars"));
+		Select option = new Select(dropdown);
+		//option.selectByIndex(2);
+		 option.selectByValue("honda");
+		//option.selectByVisibleText("BMW");
+		 WebElement result = option.getFirstSelectedOption();
+		 String captureresult = result.getText();
+		 System.out.println(captureresult);
+		
+		
+		
+	}
+	
+
+}

@@ -1,0 +1,49 @@
+package practice.selenium;
+
+import java.time.Duration;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.NoSuchFrameException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+//import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+public class Exceptions 
+{
+   WebDriver driver;
+   
+   @Test
+   public void BrowserSetUp() 
+   {
+	driver = new ChromeDriver();   
+	driver.manage().window().maximize();
+	driver.manage().deleteAllCookies();
+	driver.get("https://demoqa.com/");
+	//driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+	
+	try
+	{
+		driver.findElement(By.id("except")).click();
+	}
+	catch(NoSuchElementException e)
+	{
+		System.out.println("Hello Exception");
+	}
+
+	//iframeerror
+	try {
+		driver.switchTo().frame("NextWindow").close();
+	}
+	
+	
+	catch(NoSuchFrameException e)
+	{
+		System.out.println("This is iframe error");
+	}
+	
+	driver.get("https://www.youtube.com/");
+	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
+	
+   }
+}

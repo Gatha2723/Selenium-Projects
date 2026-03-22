@@ -1,0 +1,34 @@
+package practice.selenium;
+
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.time.Duration;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class WindowAndMouseActions {
+
+WebDriver driver;
+	
+	@Test
+	public void browserSetUp() throws InterruptedException, AWTException {
+		WebDriverManager.chromedriver().setup();
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+		driver.get("https://vinothqaacademy.com/mouse-event/");
+		Thread.sleep(3000);
+		Robot robot = new Robot();
+		robot.keyPress(KeyEvent.VK_DOWN);
+		Thread.sleep(2000);
+		robot.keyPress(KeyEvent.VK_ALT + KeyEvent.VK_TAB);
+		
+	}	
+
+}
