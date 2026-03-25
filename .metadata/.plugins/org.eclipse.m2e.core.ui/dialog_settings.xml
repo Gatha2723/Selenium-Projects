@@ -28,8 +28,10 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
+			<item value="org."/>
 		</list>
 		<list key="groupId">
+			<item value="com.harsha"/>
 		</list>
 		<list key="artifactId">
 		</list>
@@ -48,14 +50,11 @@
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
 			<item value="com.harsha"/>
-			<item value="com.personal"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
 			<item value="SeleniumIndustryPractice"/>
-			<item value="SeleniumIndustryReady"/>
-			<item value="com.harsha"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

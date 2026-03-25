@@ -1,16 +1,22 @@
 package IndustryPractice;
 
+
+
+
+
+import java.io.IOException;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
+public class LoginPage extends Base{
 	
 	WebDriver driver;
 	public String currentUrl ="https://practicetestautomation.com/logged-in-successfully/";
 	
-	
+	Base main = new Base();
 	public LoginPage(WebDriver driver)
 	{
 		this.driver = driver;
@@ -32,11 +38,12 @@ public class LoginPage {
 	WebElement logoutbutton;
 	
 	
-	public void login(String user,String pwd) throws InterruptedException
+	public void login(String user,String pwd) throws InterruptedException, IOException
 	{
 	   username.sendKeys(user);	
 	   Thread.sleep(1000);
 	   password.sendKeys(pwd);
+	   main.captureshots("Loginpage");
 	   Thread.sleep(1000);
 	   submitbutton.click();
 	   
@@ -46,7 +53,5 @@ public class LoginPage {
 	{
 		logoutbutton.click();
 	}
-	
-
 	
 }

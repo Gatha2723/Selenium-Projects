@@ -1,7 +1,6 @@
 package IndustryPractice;
 
 import java.io.IOException;
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -11,9 +10,10 @@ public class LoginTest extends Base {
 	public void setup() throws IOException, InterruptedException {
 		BrowserSetup();
 		LoginPage lp = new LoginPage(driver);
+		
 
 		lp.login(prop.getProperty("Username"), prop.getProperty("Password"));
-
+		
 		String CurrentUrl = driver.getCurrentUrl();
 		Assert.assertEquals(CurrentUrl,lp.currentUrl);
 		System.out.println(CurrentUrl);
@@ -22,11 +22,15 @@ public class LoginTest extends Base {
 		if(Title.contains("Logged In Successfully"));
 		System.out.println(Title);
 		
+		captureshots("successfullloginpage");
+		
 		Thread.sleep(1000);
 		lp.logout();
 		
 		Thread.sleep(1000);
 		teardown();
+		
+		
 	}
 
 }

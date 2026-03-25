@@ -1,13 +1,19 @@
 package IndustryPractice;
 
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
 
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import com.google.common.io.Files;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Base {
@@ -27,7 +33,20 @@ public class Base {
 		prop = new Properties();
 		prop.load(fis);
 		driver.get(prop.getProperty("Url"));
-	}
+		}
+		
+		
+		public void captureshots(String pagename) throws IOException 
+		{
+		  String timestamp = new java.text.SimpleDateFormat("yyyymmdd_hhmmss").format(new java.util.Date());
+          TakesScreenshot ts = (TakesScreenshot)driver;
+          File source = ts.getScreenshotAs(OutputType.FILE);
+          String DestinationPath = (System.getProperty("user.dir")+"/Screenshot/"+pagename+"_"+timestamp+"_"+".png");
+          File destination = new File (DestinationPath);
+          destination.getParentFile().mkdirs();
+		  Files.copy(source, destination);
+		}
+	
 	
 	public void teardown() throws InterruptedException
 	{
@@ -36,5 +55,4 @@ public class Base {
 		driver.quit();
 	}
 	
-
 }
